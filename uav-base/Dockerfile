@@ -181,7 +181,7 @@ RUN make
 RUN make install
 ############################
 
-## Install Ceres Solver ##########
+## Install NLOPT ##########
 WORKDIR /workspace
 RUN git clone https://github.com/stevengj/nlopt.git nlopt
 
