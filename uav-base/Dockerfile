@@ -235,6 +235,9 @@ RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
     ros-$ROS_DISTRO-octomap-msgs \
     ros-$ROS_DISTRO-dynamic-edt-3d \
   && sudo rm -rf /var/lib/apt/lists/*
+
+# Install Geographiclib Dataset
+RUN sudo /opt/ros/$ROS_DISTRO/lib/mavros/install_geographiclib_datasets.sh
 ############################
 
 ## Install LibRealSense ##########
