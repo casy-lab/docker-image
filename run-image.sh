@@ -13,7 +13,6 @@ if [ ! -d "$1" ]; then
 fi
 
 DOCKER_IMAGE=$1
-CMD=${@:2}
 
 # Run the developer's dockerfile
 docker run -it --rm \
@@ -21,5 +20,4 @@ docker run -it --rm \
   --privileged \
   --volume=/Users/lorenzogentilini/Git/Others/CatkinWorkspace:/home/docker-dev/catkin_ws \
   --volume=/dev:/dev \
-  $DOCKER_IMAGE \
-  $CMD
+  $DOCKER_IMAGE
