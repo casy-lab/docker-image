@@ -255,7 +255,11 @@ RUN cmake .. -DFORCE_RSUSB_BACKEND=true -DCMAKE_BUILD_TYPE=release
 RUN make
 RUN sudo make install
 
+# Delete Presets - Comment if Needed
+RUN rm -rf $HOME/Documents
+
 # Symlink udev rules
+RUN mkdir -p /etc/udev/rules.d
 RUN sudo ln -s /workspace/librealsense/config/99-realsense-libusb.rules /etc/udev/rules.d/99-realsense-libusb.rules
 ############################
 
