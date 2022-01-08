@@ -83,6 +83,8 @@ RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
     vim \
   && sudo rm -rf /var/lib/apt/lists/*
 
+RUN git config --global http.postBuffer 1048576000
+
 # ********************************************************
 # Uav Base Dependencies
 # ********************************************************
@@ -234,6 +236,8 @@ RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
     ros-$ROS_DISTRO-octomap-ros \
     ros-$ROS_DISTRO-octomap-msgs \
     ros-$ROS_DISTRO-dynamic-edt-3d \
+    ros-$ROS_DISTRO-vision-msgs \
+    ros-$ROS_DISTRO-ddynamic-reconfigure \
   && sudo rm -rf /var/lib/apt/lists/*
 
 # Install Geographiclib Dataset
@@ -269,8 +273,13 @@ RUN sudo ln -s /workspace/librealsense/config/99-realsense-libusb.rules /etc/ude
 # Additional Dependencies
 RUN sudo add-apt-repository ppa:alex-p/tesseract-ocr5
 RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
+    locate \
+    libtool \
+    libtool-bin \
     python3-pulp \
     tesseract-ocr \
+    libtesseract-dev \
+    libleptonica-dev \
   && sudo rm -rf /var/lib/apt/lists/*
 
 # Additional Python Dependencies
