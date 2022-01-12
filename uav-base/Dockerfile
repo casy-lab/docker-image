@@ -211,6 +211,7 @@ RUN mkdir -p /workspace/ACADOtoolkit/build
 WORKDIR /workspace/ACADOtoolkit/build
 RUN cmake ..
 RUN make
+RUN make install
 ############################
 
 ## Install ROS Noetic ##########
@@ -267,7 +268,7 @@ RUN rm -rf $HOME/Documents
 
 # Symlink udev rules
 RUN mkdir -p /etc/udev/rules.d
-RUN sudo ln -s /workspace/librealsense/config/99-realsense-libusb.rules /etc/udev/rules.d/99-realsense-libusb.rules
+RUN sudo cp -p /workspace/librealsense/config/99-realsense-libusb.rules /etc/udev/rules.d/99-realsense-libusb.rules
 ############################
 
 # Additional Dependencies
@@ -280,17 +281,44 @@ RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
     tesseract-ocr \
     libtesseract-dev \
     libleptonica-dev \
+    libyaml-cpp-dev \
+    xvfb \
   && sudo rm -rf /var/lib/apt/lists/*
 
 # Additional Python Dependencies
-RUN pip3 install --upgrade bezier rtree
+RUN pip3 install --upgrade bezier \
+                           rtree \
+                           kconfiglib \
+                           jinja2 \
+                           jsonschema \
+                           toml
+
+RUN pip3 install --upgrade torch==1.10.1+cpu \
+                           torchvision==0.11.2+cpu \
+                           torchaudio==0.10.1+cpu -f \
+                           https://download.pytorch.org/whl/cpu/torch_stable.html
+
+# Remove Installation Directories
+RUN rm -rf /workspace
 
 # Start using the new user
 USER $USERNAME:$GROUPNAME
 
 # Set Up Bashrc
 RUN echo '\n\
-  source /opt/ros/noetic/setup.bash' >> $HOME/.bashrc
+  source /opt/ros/noetic/setup.bash\n\
+  source /home/docker-dev/catkin_ws/devel/setup.bash' >> $HOME/.bashrc
+
+RUN echo '\n\
+  cd PX4-Autopilot\n\
+  source ./Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default \n\
+  export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd) \n\
+  export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo\n\
+  cd' >> $HOME/.bashrc
+
+# Trick to Let Gazebo Work in HeadLess Mode
+RUN sudo Xvfb :1 -screen 0 1600x1200x16  &
+RUN export DISPLAY=:1.0
 
 # Switch to user's HOME folder
 WORKDIR $HOME

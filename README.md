@@ -1,6 +1,6 @@
 # Docker Images
 
-This repository contains Dockerfiles to build, and run, a docker image useful for executing the [UAV Software](https://github.com/casy-lab/uav-catkin-ws) on any quadcopter, regardless of the endowed companion computer.
+This repository contains Dockerfiles to build, and run, a docker image useful for executing the [UAV Software](https://github.com/casy-lab/uav-catkin-ws) or the [Student UAV Software](https://github.com/casy-lab/student-catkin-ws) on any quadcopter, regardless of the endowed companion computer, or on any simulation pc.
 
 ### Dependencies
 

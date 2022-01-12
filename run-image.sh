@@ -19,5 +19,6 @@ docker run -it --rm \
   --network=host \
   --privileged \
   --volume=/Users/lorenzogentilini/Git/Others/CatkinWorkspace:/home/docker-dev/catkin_ws \
+  --volume=/Users/lorenzogentilini/Git/Others/PX4-Autopilot:/home/docker-dev/PX4-Autopilot \
   --volume=/dev:/dev \
   $DOCKER_IMAGE
