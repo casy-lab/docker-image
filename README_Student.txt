@@ -1,6 +1,8 @@
 For the students:
 1) Pull the docker image repo with "git clone https://github.com/casy-lab/docker-image.git"
-2) Pulling the remote Docker with "docker pull lollogent/uav-base:latest" (https://hub.docker.com/r/lollogent/uav-base/tags)
+2) Pulling the remote Docker with:
+     "docker pull lollogent/uav-base:latest" if you have an ARM processor
+     "docker pull shedino/uav-base:lastest" if you have an INTEL processor
 2BIS) In alternative you can build it from source with "./build-image.sh uav-base"
       WARNING: Building it from source may take so much time (around 2/3 hours) !!!
 3) Pull (or create) the ROS workspace with "git clone https://github.com/casy-lab/student-catkin-ws"
