@@ -31,6 +31,10 @@ To launch the simulation:
 3) Run the simulation with "roslaunch px4 mavros_posix_sitl.launch"
 4) Launch your own ROS nodes
 
+N.B: In order to let the Gazebo simulation running with the camera rendering, please run the following commands in the same shell of the simulator (before launching it)
+     "sudo Xvfb :1 -screen 0 1600x1200x16  &"
+     "export DISPLAY=:1.0"
+
 When you end your work/thesis, you should memorize all the developed code in the remote repository, using the following command:
 "git push origin devel/$STUDENT NAME$"
 

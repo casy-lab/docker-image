@@ -315,10 +315,6 @@ RUN echo '\n\
   export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo\n\
   cd' >> $HOME/.bashrc
 
-# Trick to Let Gazebo Work in HeadLess Mode
-RUN sudo Xvfb :1 -screen 0 1600x1200x16  &
-RUN export DISPLAY=:1.0
-
 # Switch to user's HOME folder
 WORKDIR $HOME
 
