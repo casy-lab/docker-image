@@ -293,10 +293,9 @@ RUN pip3 install --upgrade bezier \
                            jsonschema \
                            toml
 
-RUN pip3 install --upgrade torch==1.10.1+cpu \
-                           torchvision==0.11.2+cpu \
-                           torchaudio==0.10.1+cpu -f \
-                           https://download.pytorch.org/whl/cpu/torch_stable.html
+RUN sudo pip3 install --upgrade torch \
+                           torchvision \
+                           torchaudio
 
 # Remove Installation Directories
 RUN rm -rf /workspace

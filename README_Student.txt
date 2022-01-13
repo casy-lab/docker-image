@@ -1,6 +1,6 @@
 For the students:
 1) Pull the docker image repo with "git clone https://github.com/casy-lab/docker-image.git"
-2) Pulling the remote Docker with "docker pull lollogent/uav-base:latest"
+2) Pulling the remote Docker with "docker pull lollogent/uav-base:latest" (https://hub.docker.com/r/lollogent/uav-base/tags)
 2BIS) In alternative you can build it from source with "./build-image.sh uav-base"
       WARNING: Building it from source may take so much time (around 2/3 hours) !!!
 3) Pull (or create) the ROS workspace with "git clone https://github.com/casy-lab/student-catkin-ws"
@@ -21,6 +21,9 @@ PX4 Addons procedure:
 2) Copy and paste the content of "addons-px4/models" to "PX4-Autopilot/Tools/sitl_gazebo/models"
 3) Copy and paste the content of "addons-px4/world" to "PX4-Autopilot/Tools/sitl_gazebo/worlds"
 4) Copy and paste the file "addons-px4/iris.sdf.jinja" to "PX4-Autopilot/Tools/sitl_gazebo/models/iris"
+5) Navigate inside the file "PX4-Autopilot/launch/mavros_posix_sitl.launch"
+5b) Change the row 19 from "<arg name="gui" default="true"/>" to "<arg name="gui" default="false"/>"
+6) To change the simulation environment change the row 15 from "<arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>" to "<arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/$YOUR WORLD$.world"/>"
 
 To launch the simulation:
 1) Navigate inside PX4-Autopilot folder with "cd PX4-Autopilot"
