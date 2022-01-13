@@ -2,7 +2,7 @@
 # Ubuntu OS, User and Base Environment
 # ********************************************************
 # FROM ubuntu:20.04 AS ubuntu-base
-FROM nvidia/cuda:11.4.2-cudnn8-devel-ubuntu20.04 AS ubuntu-base 
+FROM nvidia/cuda:11.5.1-cudnn8-devel-ubuntu20.04 AS ubuntu-base 
 
 # Install packages without prompting the user to answer any questions
 ENV DEBIAN_FRONTEND noninteractive
@@ -294,10 +294,9 @@ RUN sudo apt-get update && sudo apt-get install -q -y --no-install-recommends \
 
 # Additional Python Dependencies
 RUN pip3 install --upgrade bezier rtree
-RUN pip3 install --upgrade torch==1.10.1+cu113 \
-                           torchvision==0.11.2+cu113 \
-                           torchaudio==0.10.1+cu113 -f \
-                           https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN pip3 install --upgrade torch  \
+                           torchvision \
+                           torchaudio
 
 # Remove Installation Directories
 RUN rm -rf /workspace

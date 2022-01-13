@@ -20,7 +20,6 @@ docker run -it --rm \
   --privileged \
   --cpus=6 \
   --memory=7G \
-  --volume=/Users/lorenzogentilini/Git/Others/CatkinWorkspace:/home/docker-dev/catkin_ws \
-  --volume=/Users/lorenzogentilini/Git/Others/PX4-Autopilot:/home/docker-dev/PX4-Autopilot \
+  --volume=/home/nvidia/catkin_ws:/home/docker-dev/catkin_ws \
   --volume=/dev:/dev \
   $DOCKER_IMAGE

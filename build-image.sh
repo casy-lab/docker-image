@@ -19,5 +19,7 @@ docker build \
   --file $DOCKER_DIR/Dockerfile \
   --network=host \
   --pull \
+  --cpus=6 \
+  --memory=7G \
   --tag $DOCKER_DIR \
   $DOCKER_DIR
