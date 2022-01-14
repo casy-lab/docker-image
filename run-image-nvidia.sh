@@ -18,8 +18,8 @@ DOCKER_IMAGE=$1
 docker run -it --rm \
   --network=host \
   --privileged \
-  --cpus=6 \
-  --memory=7G \
+  --cpuset-cpus="0-5" jess/stress \
+  --memory=7000000000 \
   --volume=/home/nvidia/catkin_ws:/home/docker-dev/catkin_ws \
   --volume=/dev:/dev \
   $DOCKER_IMAGE

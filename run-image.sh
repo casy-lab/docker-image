@@ -18,8 +18,8 @@ DOCKER_IMAGE=$1
 docker run -it --rm \
   --network=host \
   --privileged \
-  --cpus=6 \
-  --memory=7G \
+  --cpuset-cpus="0-5" jess/stress \
+  --memory=7000000000 \
   --volume=/Users/lorenzogentilini/Git/Others/CatkinWorkspace:/home/docker-dev/catkin_ws \
   --volume=/Users/lorenzogentilini/Git/Others/PX4-Autopilot:/home/docker-dev/PX4-Autopilot \
   --volume=/dev:/dev \
