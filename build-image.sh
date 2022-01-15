@@ -19,7 +19,7 @@ docker build \
   --file $DOCKER_DIR/Dockerfile \
   --network=host \
   --pull \
-  --cpuset-cpus="0-5" jess/stress \
+  --cpuset-cpus="0-5" \
   --memory=7000000000 \
   --tag $DOCKER_DIR \
   $DOCKER_DIR
